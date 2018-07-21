@@ -3,7 +3,7 @@ import Phaser from 'phaser'
 import Mushroom from '../sprites/Mushroom'
 import Background from '../sprites/Background'
 import lang from '../lang'
-import Ship from '../sprites/Ship'
+import Player from '../sprites/Player'
 
 export default class extends Phaser.State {
   init () {
@@ -33,6 +33,8 @@ export default class extends Phaser.State {
   // }
 
   create () {
+    // Environment
+    // far background
     this.background = new Background({
       game: this.game,
       x: this.world.centerX,
@@ -42,22 +44,21 @@ export default class extends Phaser.State {
       asset: 'background'
     })
 
-    this.ship = new Ship({
-      game: this.game,
-      x: this.world.centerX,
-      y: this.world.centerY,
-      asset: 'ship'
-    })
-
-    this.mushroom = new Mushroom({
-      game: this.game,
-      x: this.world.centerX,
-      y: this.world.centerY,
-      asset: 'mushroom'
-    })
-
     this.game.add.existing(this.background)
-    this.game.add.existing(this.ship)
+
+    // Player
+    this.player = new Player({
+      game: this.game,
+      x: this.world.centerX,
+      y: this.world.centerY + (this.world.centerY) / 2 + (this.world.centerY) / 4,
+      asset: 'player'
+    })
+    
+    let player = this.game.add.existing(this.player)
+    this.game.physics.enable(player, Phaser.Physics.ARCADE)
+
+    this.cursors = this.game.input.keyboard.createCursorKeys()
+    this.fireButton = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR)
   }
 
   update () {
@@ -66,7 +67,7 @@ export default class extends Phaser.State {
 
   render () {
     if (__DEV__) {
-      // this.game.debug.spriteInfo(this.background, 32, 32)
+      this.game.debug.spriteInfo(this.player, 32, 32)
     }
   }
 }
