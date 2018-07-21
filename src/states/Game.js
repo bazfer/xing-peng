@@ -1,8 +1,9 @@
 /* globals __DEV__ */
 import Phaser from 'phaser'
-// import Mushroom from '../sprites/Mushroom'
+import Mushroom from '../sprites/Mushroom'
 import Background from '../sprites/Background'
 import lang from '../lang'
+import Ship from '../sprites/Ship'
 
 export default class extends Phaser.State {
   init () {
@@ -41,7 +42,22 @@ export default class extends Phaser.State {
       asset: 'background'
     })
 
+    this.ship = new Ship({
+      game: this.game,
+      x: this.world.centerX,
+      y: this.world.centerY,
+      asset: 'ship'
+    })
+
+    this.mushroom = new Mushroom({
+      game: this.game,
+      x: this.world.centerX,
+      y: this.world.centerY,
+      asset: 'mushroom'
+    })
+
     this.game.add.existing(this.background)
+    this.game.add.existing(this.ship)
   }
 
   update () {
