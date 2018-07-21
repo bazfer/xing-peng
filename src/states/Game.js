@@ -33,7 +33,9 @@ export default class extends Phaser.State {
   // }
 
   create () {
+    // Physics
     this.game.physics.startSystem(Phaser.Physics.ARCADE)
+
     // Environment
     // far background
     this.background = new Background({
@@ -59,7 +61,15 @@ export default class extends Phaser.State {
     this.game.physics.enable(this.player, Phaser.Physics.ARCADE)
 
     this.cursors = this.game.input.keyboard.createCursorKeys()
-    this.fireButton = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR)
+    // this.fireButton = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR)
+
+    this.player.body.collideWorldBounds = true
+
+    // DEVELOPMENT TOOLS
+    console.log('game')
+    console.log(this.game)
+    console.log('player')
+    console.log(this.player)
   }
 
   update () {
