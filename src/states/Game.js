@@ -33,6 +33,7 @@ export default class extends Phaser.State {
   // }
 
   create () {
+    this.game.physics.startSystem(Phaser.Physics.ARCADE)
     // Environment
     // far background
     this.background = new Background({
@@ -54,8 +55,8 @@ export default class extends Phaser.State {
       asset: 'player'
     })
     
-    let player = this.game.add.existing(this.player)
-    this.game.physics.enable(player, Phaser.Physics.ARCADE)
+    this.game.add.existing(this.player)
+    this.game.physics.enable(this.player, Phaser.Physics.ARCADE)
 
     this.cursors = this.game.input.keyboard.createCursorKeys()
     this.fireButton = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR)
@@ -63,11 +64,27 @@ export default class extends Phaser.State {
 
   update () {
     this.background.tilePosition.y += 7
+
+    if (this.cursors.left.isDown) {
+      this.player.x -= 10
+    }
+
+    if (this.cursors.right.isDown) {
+      this.player.x += 10
+    }
+
+    if (this.cursors.up.isDown) {
+      this.player.y -= 10
+    }
+
+    if (this.cursors.down.isDown) {
+      this.player.y += 10
+    }
   }
 
   render () {
     if (__DEV__) {
-      this.game.debug.spriteInfo(this.player, 32, 32)
+      // this.game.debug.spriteInfo(this.player, 32, 32)
     }
   }
 }
