@@ -36,15 +36,21 @@ export default class extends Phaser.State {
       game: this.game,
       x: this.world.centerX,
       y: this.world.centerY,
+      width: 960,
+      height: 540,
       asset: 'background'
     })
 
     this.game.add.existing(this.background)
   }
 
+  update () {
+    this.background.tilePosition.y += 7
+  }
+
   render () {
     if (__DEV__) {
-      // this.game.debug.spriteInfo(this.mushroom, 32, 32)
+      // this.game.debug.spriteInfo(this.background, 32, 32)
     }
   }
 }

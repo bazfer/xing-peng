@@ -1,8 +1,9 @@
 import Phaser from 'phaser'
 
-export default class extends Phaser.Sprite {
-  constructor ({ game, x, y, asset }) {
-    super(game, x, y, asset)
+export default class extends Phaser.TileSprite {
+  constructor ({ game, x, y, width, height, asset }) {
+    super(game, x, y, width, height, asset)
     this.anchor.setTo(0.5)
+    console.log(this)
   }
 }
