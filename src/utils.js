@@ -7,11 +7,16 @@ export const centerGameObjects = (objects) => {
 
 // MISC
 export const getObjectMethods = (obj) => {
-  var res = []
+  var objMethods = []
   for (var m in obj) {
     if (typeof obj[m] == 'function') {
-      res.push(m)
+      objMethods.push(m)
     }
   }
-  return res
+  return objMethods
+}
+
+// FILE MGMT
+export const spriteLoader = (name) => {
+  console.log(name)
 }
