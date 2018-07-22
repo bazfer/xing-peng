@@ -4,33 +4,11 @@ import Wall from '../sprites/wall'
 import Background from '../sprites/Background'
 import lang from '../lang'
 import Player from '../sprites/Player'
+import Asteroid from '../sprites/Asteroid';
 
 export default class extends Phaser.State {
-  init () {
-    
-  }
+  init () { }
   preload () { }
-
-  // create() {
-  //   const bannerText = lang.text('welcome')
-  //   let banner = this.add.text(this.world.centerX, this.game.height - 80, bannerText, {
-  //     font: '40px Bangers',
-  //     fill: '#77BFA3',
-  //     smoothed: false
-  //   })
-
-  //   banner.padding.set(10, 16)
-  //   banner.anchor.setTo(0.5)
-
-  //   this.mushroom = new Mushroom({
-  //     game: this.game,
-  //     x: this.world.centerX,
-  //     y: this.world.centerY,
-  //     asset: 'mushroom'
-  //   })
-
-  //   this.game.add.existing(this.mushroom)
-  // }
 
   create () {
     // Physics
@@ -57,6 +35,15 @@ export default class extends Phaser.State {
       asset: 'wall'
     })
     this.game.add.existing(this.rightWall)
+
+    // Enemies
+    this.asteroid = new Asteroid({ 
+      game: this.game,
+      x: 100,
+      y: -100,
+      asset: 'asteroid'
+    })
+    this.game.add.existing(this.asteroid)
     
     // Player
     this.player = new Player({
@@ -75,9 +62,9 @@ export default class extends Phaser.State {
     this.player.body.collideWorldBounds = true
 
     // DEVELOPMENT TOOLS
-    console.log('game')
+    console.log('GAME')
     console.log(this.game)
-    console.log('player')
+    console.log('PLAYER')
     console.log(this.player)
   }
 
@@ -99,6 +86,11 @@ export default class extends Phaser.State {
 
     if (this.cursors.down.isDown) {
       this.player.y += 10
+    }
+
+    if ((this.asteroid.x > 1200) || (this.asteroid.y > 800)) {
+      this.asteroid.destroy()
+      console.log(this.asteroid)
     }
   }
 
