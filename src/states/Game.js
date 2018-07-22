@@ -1,6 +1,6 @@
 /* globals __DEV__ */
 import Phaser from 'phaser'
-import Mushroom from '../sprites/Mushroom'
+import Wall from '../sprites/wall'
 import Background from '../sprites/Background'
 import lang from '../lang'
 import Player from '../sprites/Player'
@@ -43,12 +43,21 @@ export default class extends Phaser.State {
       x: this.world.centerX,
       y: this.world.centerY,
       width: 960,
-      height: 540,
+      height: 640,
       asset: 'background'
     })
-
     this.game.add.existing(this.background)
 
+    this.rightWall = new Wall({
+      game: this.game,
+      x: 959,
+      y: 0,
+      width: 70,
+      height: 640,
+      asset: 'wall'
+    })
+    this.game.add.existing(this.rightWall)
+    
     // Player
     this.player = new Player({
       game: this.game,
@@ -74,6 +83,7 @@ export default class extends Phaser.State {
 
   update () {
     this.background.tilePosition.y += 7
+    this.rightWall.tilePosition.y += 10
 
     if (this.cursors.left.isDown) {
       this.player.x -= 10
