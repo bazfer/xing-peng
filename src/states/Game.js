@@ -71,23 +71,16 @@ export default class extends Phaser.State {
     this.player.body.collideWorldBounds = true
 
     // TIMER TESTING
-
-    // this.timer = this.game.time.create(false)
     var mf = () => {
       console.log('mothefuckja')
     }
-    // this.game.time.events.add(5000, mf, this)
-    // console.log('TIMER')
-    // console.log(this.timer)
 
-    
     // const ti = new Phaser.Timer(self.game, false)
     const ti = new AsteroidGenerator(self.game, false)
-    console.log('TI')
-    console.log(ti)
     ti.add(3000, mf)
     this.game.time.add(ti)
     ti.start()
+
     // DEVELOPMENT
     console.log('GAME')
     console.log(this.game)
@@ -95,8 +88,6 @@ export default class extends Phaser.State {
     console.log(this.player)
     // console.log('ASTEROID METHODS')
     // console.log(getObjectMethods(this.asteroid))
-  
-    // setTimeout(function(){ console.log(this) }, 10000)
   }
 
   update () {
