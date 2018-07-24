@@ -8,6 +8,9 @@ import Background from '../sprites/Background'
 import Player from '../sprites/Player'
 import Asteroid from '../sprites/Asteroid'
 
+/* generators */
+import AsteroidGenerator from '../generators/AsteroidGenerator'
+
 /* utils */
 import { getObjectMethods } from '../utils'
 
@@ -16,6 +19,11 @@ export default class extends Phaser.State {
   preload () { }
 
   create () {
+    const self = this
+    // CONTROLS
+    this.cursors = this.game.input.keyboard.createCursorKeys()
+    // this.fireButton = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR)
+
     // Physics
     this.game.physics.startSystem(Phaser.Physics.ARCADE)
 
@@ -50,7 +58,7 @@ export default class extends Phaser.State {
       asset: 'asteroid'
     })
     this.game.add.existing(this.asteroid)
-    
+
     // PLAYER
     this.player = new Player({
       game: this.game,
@@ -58,22 +66,35 @@ export default class extends Phaser.State {
       y: this.world.centerY + (this.world.centerY) / 2 + (this.world.centerY) / 4,
       asset: 'player'
     })
-    
     this.game.add.existing(this.player)
     this.game.physics.enable(this.player, Phaser.Physics.ARCADE)
-
-    this.cursors = this.game.input.keyboard.createCursorKeys()
-    // this.fireButton = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR)
-
     this.player.body.collideWorldBounds = true
 
+    // TIMER TESTING
+
+    // this.timer = this.game.time.create(false)
+    var mf = () => {
+      console.log('mothefuckja')
+    }
+    // this.game.time.events.add(5000, mf, this)
+    // console.log('TIMER')
+    // console.log(this.timer)
+
+    
+    // const ti = new Phaser.Timer(self.game, false)
+    const ti = new AsteroidGenerator(self.game, false)
+    console.log('TI')
+    console.log(ti)
+    ti.add(3000, mf)
+    this.game.time.add(ti)
+    ti.start()
     // DEVELOPMENT
     console.log('GAME')
     console.log(this.game)
     console.log('PLAYER')
     console.log(this.player)
-    console.log('ASTEROID METHODS')
-    console.log(getObjectMethods(this.asteroid))
+    // console.log('ASTEROID METHODS')
+    // console.log(getObjectMethods(this.asteroid))
   
     // setTimeout(function(){ console.log(this) }, 10000)
   }
