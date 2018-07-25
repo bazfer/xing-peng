@@ -104,11 +104,6 @@ export default class extends Phaser.State {
     if (this.cursors.down.isDown) {
       this.player.y += 10
     }
-
-    // OBJECT CLEANUP
-    if ((this.asteroid.x > 1200) || (this.asteroid.y > 800)) {
-      this.asteroid.destroy()
-    }
   }
 
   render () {
