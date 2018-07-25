@@ -12,33 +12,24 @@ export default class extends Phaser.Group {
   }
 
   generateAsteroid () {
-    let asteroid = new Asteroid({
+    let a = new Asteroid({
       game: this.game,
       x: getRandomInteger(0, 960),
       y: -100,
       asset: this.asset
     })
-    this.game.add.existing(asteroid)
+    this.game.add.existing(a)
   }
 
   init () {
-    console.log('ASTEROID GENERATOR INITIATED')
-    const mf = () => console.log('DIFFICULTY: NORMAL')
-    const diffKey = {
+    const getFrequency = {
       'easy': 2000,
       'normal': 1000,
       'hard': 500
-    } 
+    }
 
-    console.log(diffKey[this.difficulty])
-    
     this.game.time.add(this.timer)
-    this.timer.loop(1000, () => { this.generateAsteroid() })
+    this.timer.loop(getFrequency.normal, () => { this.generateAsteroid() })
     this.timer.start()
-
-    console.log('GAME')
-    console.log(this.game)
   }
-
-
 }

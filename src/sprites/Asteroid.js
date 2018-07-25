@@ -9,11 +9,11 @@ export default class extends Phaser.Sprite {
   initialize () {
     
   }
-  update() {
+
+  update () {
     this.x += 3
     this.y += 4
 
-    // OBJECT CLEANUP
     if ((this.x > 1000) || (this.y > 700)) {
       this.destroy()
     }
