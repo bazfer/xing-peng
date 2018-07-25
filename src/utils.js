@@ -20,3 +20,8 @@ export const getObjectMethods = (obj) => {
 export const spriteLoader = (name) => {
   console.log(name)
 }
+
+// RANDOM NUMBER GENERATORS
+export const getRandomInteger = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min
+}

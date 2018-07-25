@@ -70,24 +70,15 @@ export default class extends Phaser.State {
     this.game.physics.enable(this.player, Phaser.Physics.ARCADE)
     this.player.body.collideWorldBounds = true
 
-    // TIMER TESTING
-    // var mf = () => {
-    //   console.log('mothefuckja')
-    // }
+    // GENERATORS
 
-    // // const ti = new Phaser.Timer(self.game, false)
-    this.asteroidGenerator = new AsteroidGenerator(self.game, false)
-    this.game.add.existing(this.asteroidGenerator)
+    this.asteroidGenerator = new AsteroidGenerator(self.game, 'asteroid', 'normal')
     this.asteroidGenerator.init()
-    // ti.timer.add(3000, mf)
-    // this.game.time.add(ti.timer)
-    // ti.timer.start()
 
     // DEVELOPMENT
-    console.log('GAME')
-    console.log(this.game)
-    console.log('PLAYER')
-    console.log(this.player)
+
+    // console.log('PLAYER')
+    // console.log(this.player)
     // console.log('ASTEROID METHODS')
     // console.log(getObjectMethods(this.asteroid))
   }
