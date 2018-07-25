@@ -7,7 +7,6 @@ export default class extends Phaser.Sprite {
   }
 
   initialize () {
-    
   }
 
   update () {
