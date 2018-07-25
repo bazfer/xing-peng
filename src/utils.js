@@ -19,6 +19,7 @@ export const getObjectMethods = (obj) => {
 // FILE MGMT
 export const spriteLoader = (name) => {
   console.log(name)
+  // import Name from 'name'
 }
 
 // RANDOM NUMBER GENERATORS
