@@ -49,33 +49,40 @@ export default class extends Phaser.State {
       asset: 'wall'
     })
     this.game.add.existing(this.rightWall)
-    console.log("PINCHE PARED")
-    console.log(this.rightWall)
 
-    // ENEMIES
-    this.asteroid = new Asteroid({ 
-      game: this.game,
-      x: 100,
-      y: -100,
-      asset: 'asteroid'
-    })
-    this.game.add.existing(this.asteroid)
+    // SINGLE ENEMY
+    // this.asteroid = new Asteroid({ 
+    //   game: this.game,
+    //   x: 100,
+    //   y: -100,
+    //   asset: 'asteroid'
+    // })
+    // this.game.add.existing(this.asteroid)
+    // this.asteroid.init()
 
     // PLAYER
     this.player = new Player({
       game: this.game,
       x: this.world.centerX,
       y: this.world.centerY + (this.world.centerY) / 2 + (this.world.centerY) / 4,
-      asset: 'player'
+      asset: 'player',
+      health: 1000,
+      hitArea: 'Rectangle'
     })
     this.game.add.existing(this.player)
     this.game.physics.enable(this.player, Phaser.Physics.ARCADE)
     this.player.body.collideWorldBounds = true
+    console.log('PLAYEDY DU')
+    this.player.init()
+    console.log(this.player.health)
 
     // GENERATORS
 
-    this.asteroidGenerator = new AsteroidGenerator(self.game, 'asteroid', 'normal')
-    this.asteroidGenerator.init()
+    this.asteroidGenerator1 = new AsteroidGenerator(self.game, this.player, 'asteroid', 'normal')
+    this.asteroidGenerator1.init()
+
+    this.asteroidGenerator2 = new AsteroidGenerator(self.game, this.player, 'asteroid', 'normal')
+    this.asteroidGenerator2.init()
 
     // DEVELOPMENT
 
