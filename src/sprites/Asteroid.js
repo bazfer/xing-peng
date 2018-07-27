@@ -25,7 +25,7 @@ export default class extends Phaser.Sprite {
     this.body.x += this.vectorX
     this.body.y += this.vectorY
 
-    if ((this.x < -64) || (this.x > 896) || (this.y > 1216)) {
+    if ((this.x < -32) || (this.x > 768) || (this.y > 1344)) {
       this.destroy()
     }
 

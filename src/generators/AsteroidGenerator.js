@@ -16,7 +16,7 @@ export default class extends Phaser.Group {
     let a = new Asteroid({
       game: this.game,
       player: this.player,
-      x: getRandomInteger(0, 960),
+      x: getRandomInteger(0, 736),
       y: -100,
       asset: this.asset
     })

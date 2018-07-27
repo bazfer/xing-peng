@@ -33,8 +33,8 @@ export default class extends Phaser.State {
       game: this.game,
       x: this.world.centerX,
       y: this.world.centerY,
-      width: 832,
-      height: 1088,
+      width: 736,
+      height: 1312,
       asset: 'background'
     })
     this.game.add.existing(this.background)
@@ -42,10 +42,10 @@ export default class extends Phaser.State {
     // wall
     this.rightWall = new Wall({
       game: this.game,
-      x: 832,
+      x: 375,
       y: 0,
-      width: 64,
-      height: 1088,
+      width: 32,
+      height: 1280,
       asset: 'wall'
     })
     this.game.add.existing(this.rightWall)
