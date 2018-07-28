@@ -2,4 +2,8 @@ body {
   background-color: lightcyan;
 }
 
-@media (max-)
+@media (min-height: 1224) {
+  #content {
+    height: 75%;
+  }
+}

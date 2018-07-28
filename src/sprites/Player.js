@@ -17,5 +17,9 @@ export default class extends Phaser.Sprite {
       this.alive = false
       // console.log(this.alive)
     }
+
+    if(!this.alive) {
+      this.destroy()
+    }
   }
 }

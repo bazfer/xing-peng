@@ -1,5 +1,6 @@
 import Phaser from 'phaser'
 import utils, { getRandomDecimal } from '../utils'
+import config from '../config'
 
 export default class extends Phaser.Sprite {
   constructor ({ game, player, x, y, asset }) {
@@ -25,13 +26,13 @@ export default class extends Phaser.Sprite {
     this.body.x += this.vectorX
     this.body.y += this.vectorY
 
-    if ((this.x < -32) || (this.x > 768) || (this.y > 1344)) {
+    if ((this.x < -config.tileWidth) || (this.x > config.gameWidth + config.tileWidth) || (this.y > config.gameHeight + config.tileHeight)) {
       this.destroy()
     }
 
     if (this.checkOverlap(this, this.player)) {
       this.player.health -= 100
-      // console.log(this.player.health)
+      console.log(this.player.health)
     }
   }
 }

@@ -1,6 +1,7 @@
 /* globals __DEV__ */
 import Phaser from 'phaser'
 import lang from '../lang'
+import config from '../config'
 
 /* game assets */
 import Wall from '../sprites/Wall'
@@ -33,8 +34,8 @@ export default class extends Phaser.State {
       game: this.game,
       x: this.world.centerX,
       y: this.world.centerY,
-      width: 736,
-      height: 1312,
+      width: config.gameWidth,
+      height: config.gameHeight,
       asset: 'background'
     })
     this.game.add.existing(this.background)
@@ -42,10 +43,10 @@ export default class extends Phaser.State {
     // wall
     this.rightWall = new Wall({
       game: this.game,
-      x: 736,
+      x: config.gameWidth,
       y: 0,
-      width: 32,
-      height: 1280,
+      width: config.tileWidth,
+      height: config.gameHeight,
       asset: 'wall'
     })
     this.game.add.existing(this.rightWall)
