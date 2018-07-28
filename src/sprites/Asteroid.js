@@ -31,7 +31,7 @@ export default class extends Phaser.Sprite {
 
     if (this.checkOverlap(this, this.player)) {
       this.player.health -= 100
-      console.log(this.player.health)
+      // console.log(this.player.health)
     }
   }
 }

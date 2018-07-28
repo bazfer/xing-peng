@@ -42,7 +42,7 @@ export default class extends Phaser.State {
     // wall
     this.rightWall = new Wall({
       game: this.game,
-      x: 375,
+      x: 736,
       y: 0,
       width: 32,
       height: 1280,
@@ -71,10 +71,8 @@ export default class extends Phaser.State {
     })
     this.game.add.existing(this.player)
     this.game.physics.enable(this.player, Phaser.Physics.ARCADE)
-    this.player.body.collideWorldBounds = true
-    console.log('PLAYEDY DU')
+    this.player.body.collideWorldBounds = true    
     this.player.init()
-    console.log(this.player.health)
 
     // GENERATORS
 
