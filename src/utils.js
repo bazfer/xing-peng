@@ -1,11 +1,8 @@
-// CANVAS
 export const centerGameObjects = (objects) => {
   objects.forEach(function (object) {
     object.anchor.setTo(0.5)
   })
 }
-
-// MISC
 export const getObjectMethods = (obj) => {
   var objMethods = []
   for (var m in obj) {
@@ -16,17 +13,20 @@ export const getObjectMethods = (obj) => {
   return objMethods
 }
 
-// FILE MGMT
-export const spriteLoader = (name) => {
-  console.log(name)
-  // import Name from 'name'
+export const getRandomDecimal = (min, max) => {
+  return Math.random() * (max - min + 1) + min
 }
 
-// RANDOM NUMBER GENERATORS
 export const getRandomInteger = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
-export const getRandomDecimal = (min, max) => {
-  return Math.random() * (max - min + 1) + min
+export const getObject = (a, key) => {
+  return a.find((x) => { return x.key === key })
 }
+
+export const getObjectIndex = (a, key) => {
+  return a.map((x) => { return x.key }).indexOf('player')
+}
+
+

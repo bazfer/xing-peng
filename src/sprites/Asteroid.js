@@ -1,14 +1,14 @@
 import Phaser from 'phaser'
-import utils, { getRandomDecimal } from '../utils'
+import { getRandomDecimal, getObjectIndex, getObject } from '../utils'
 import config from '../config'
 
 export default class extends Phaser.Sprite {
-  constructor ({ game, player, x, y, asset }) {
+  constructor ({ game, x, y, asset }) {
     super(game, x, y, asset)
     this.anchor.setTo(0.5)
-    this.player = player
     this.vectorX = getRandomDecimal(-1, 1)
     this.vectorY = getRandomDecimal(4, 5)
+    this.damagePower = 100
   }
 
   init () {
@@ -16,8 +16,8 @@ export default class extends Phaser.Sprite {
   }
 
   checkOverlap (a, b) {
-    let boundsA = this.player
-    let boundsB = this
+    let boundsA = a
+    let boundsB = b
 
     return Phaser.Rectangle.intersects(boundsA, boundsB)
   }
@@ -26,13 +26,17 @@ export default class extends Phaser.Sprite {
     this.body.x += this.vectorX
     this.body.y += this.vectorY
 
-    if ((this.x < -config.tileWidth) || (this.x > config.gameWidth + config.tileWidth) || (this.y > config.gameHeight + config.tileHeight)) {
-      this.destroy()
+    let playerObject = getObject(this.game.world.children, 'player')
+    // let playerObject = this.game.world.children[getObjectIndex(this.game.world.children, 'player')]
+
+    if (playerObject && (this.checkOverlap(this, playerObject))) {
+      playerObject.damage(this.damagePower)
+      console.log(playerObject.health)
     }
 
-    if (this.checkOverlap(this, this.player)) {
-      this.player.health -= 100
-      console.log(this.player.health)
+    if ((this.x < -config.tileWidth) || (this.x > config.gameWidth + config.tileWidth) || (this.y > config.gameHeight + config.tileHeight)) {
+      this.body = null
+      this.destroy()
     }
   }
 }
