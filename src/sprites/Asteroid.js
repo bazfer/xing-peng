@@ -1,5 +1,5 @@
 import Phaser from 'phaser'
-import { getRandomDecimal, getObjectIndex, getObject } from '../utils'
+import { checkOverlap, getRandomDecimal, getObject } from '../utils'
 import config from '../config'
 
 export default class extends Phaser.Sprite {
@@ -15,7 +15,7 @@ export default class extends Phaser.Sprite {
     this.game.physics.enable(this)
   }
 
-  checkOverlap (a, b) {
+  checkOverlapy (a, b) {
     let boundsA = a
     let boundsB = b
 
@@ -26,10 +26,9 @@ export default class extends Phaser.Sprite {
     this.body.x += this.vectorX
     this.body.y += this.vectorY
 
-    let playerObject = getObject(this.game.world.children, 'player')
-    // let playerObject = this.game.world.children[getObjectIndex(this.game.world.children, 'player')]
+    let playerObject = getObject('player', this.game.world.children)
 
-    if (playerObject && (this.checkOverlap(this, playerObject))) {
+    if (playerObject && (checkOverlap(this, playerObject))) {
       playerObject.damage(this.damagePower)
       console.log(playerObject.health)
     }
