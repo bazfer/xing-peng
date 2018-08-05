@@ -17,14 +17,9 @@ export default class extends Phaser.State {
     this.load.image('background', 'assets/images/background.png')
     this.load.image('asteroid', 'assets/images/asteroid.png')
     this.load.image('player', 'assets/images/player.png')
-    this.load.image('player_base', 'assets/images/player_base.png')
-    this.load.image('player_left_1_2', 'assets/images/player_left_1_2.png')
-    this.load.image('player_left_2_2', 'assets/images/player_left_2_2.png')
-    this.load.image('player_right_1_2', 'assets/images/player_right_1_2.png')
-    this.load.image('player_right_2_2', 'assets/images/player_right_2_2.png')
-    this.load.image('player_thrust_1_3', 'assets/images/player_thrust_1_3.png')
-    this.load.image('player_thrust_1_3', 'assets/images/player_thrust_2_3.png')
-    this.load.image('player_thrust_1_3', 'assets/images/player_thrust_3_3.png')
+    // this.load.spritesheet('player-spritesheet', 'assets/images/player-spritesheet.png', width, height, frames, margin, space, skip)
+    this.load.spritesheet('player-spritesheet', 'assets/images/player-spritesheet.png', 23, 30, 8, 0, 3)
+    
   }
 
   create () {
