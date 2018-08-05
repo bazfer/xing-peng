@@ -11,7 +11,8 @@ export default class extends Phaser.Sprite {
   }
 
   init () {
-    // console.log(this)
+    this.animations.add('fast', [2, 3])
+    this.animations.play('fast', 15, true)
   }
 
   update () {

@@ -66,7 +66,7 @@ export default class extends Phaser.State {
       game: this.game,
       x: this.world.centerX,
       y: this.world.centerY + (this.world.centerY) / 2 + (this.world.centerY) / 4,
-      asset: 'player',
+      asset: 'player-spritesheet',
       health: 1000,
       hitArea: 'Rectangle'
     })
