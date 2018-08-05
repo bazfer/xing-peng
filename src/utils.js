@@ -5,10 +5,11 @@ export const centerGameObjects = (objects) => {
     object.anchor.setTo(0.5)
   })
 }
+
 export const getObjectMethods = (obj) => {
   var objMethods = []
   for (var m in obj) {
-    if (typeof obj[m] == 'function') {
+    if (typeof obj[m] === 'function') {
       objMethods.push(m)
     }
   }
@@ -37,4 +38,3 @@ export const checkOverlap = (a, b) => {
 
   return Phaser.Rectangle.intersects(boundsA, boundsB)
 }
-
