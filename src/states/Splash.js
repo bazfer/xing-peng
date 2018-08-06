@@ -19,7 +19,6 @@ export default class extends Phaser.State {
     this.load.image('player', 'assets/images/player.png')
     // this.load.spritesheet('player-spritesheet', 'assets/images/player-spritesheet.png', width, height, frames, margin, space, skip)
     this.load.spritesheet('player-spritesheet', 'assets/images/player-spritesheet.png', 23, 30)
-    
   }
 
   create () {

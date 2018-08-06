@@ -52,7 +52,7 @@ export default class extends Phaser.State {
     this.game.add.existing(this.rightWall)
 
     // SINGLE ENEMY
-    // this.asteroid = new Asteroid({ 
+    // this.asteroid = new Asteroid({
     //   game: this.game,
     //   x: 100,
     //   y: -100,
@@ -72,7 +72,7 @@ export default class extends Phaser.State {
     })
     this.game.add.existing(this.player)
     this.game.physics.enable(this.player, Phaser.Physics.ARCADE)
-    this.player.body.collideWorldBounds = true    
+    this.player.body.collideWorldBounds = true
     this.player.init()
 
     // GENERATORS

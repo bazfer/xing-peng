@@ -21,8 +21,6 @@ export default class extends Phaser.Sprite {
     this.animations.play('flyFast', 15, true)
   }
 
-  
-
   update () {
     if (this.health < 0) {
       this.alive = false
