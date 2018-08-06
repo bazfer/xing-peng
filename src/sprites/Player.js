@@ -11,9 +11,17 @@ export default class extends Phaser.Sprite {
   }
 
   init () {
-    this.animations.add('fast', [2, 3])
-    this.animations.play('fast', 15, true)
+    this.scale.set(2)
+    this.smoothed = false
+    this.flyFast()
   }
+
+  flyFast () {
+    this.animations.add('flyFast', [2, 3])
+    this.animations.play('flyFast', 15, true)
+  }
+
+  
 
   update () {
     if (this.health < 0) {
