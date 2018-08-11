@@ -7,7 +7,7 @@ export default class extends Phaser.Group {
   constructor (game, player, asset, difficulty) {
     super(game)
     this.player = player
-    this.asset =  asset
+    this.asset = asset
     this.difficulty = difficulty
     this.timer = new Phaser.Timer(game, false)
   }

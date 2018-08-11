@@ -61,7 +61,8 @@ export default class extends Phaser.State {
     // this.game.add.existing(this.asteroid)
     // this.asteroid.init()
 
-    // PLAYER FROM SPRITESHEET
+    // PLAYER
+    // ship
     this.player = new Player({
       game: this.game,
       x: this.world.centerX,
@@ -75,6 +76,16 @@ export default class extends Phaser.State {
     this.game.physics.enable(this.player, Phaser.Physics.ARCADE)
     this.player.body.collideWorldBounds = true
     this.player.init()
+    // bullet
+    this.bulletTime = 0
+
+    this.bullets = this.game.add.group()
+    this.bullets.enableBody = true
+    this.bullets.physicsBodyType = Phaser.Physics.ARCADE
+
+    this.bullets.createMultiple(40, 'bullet')
+    this.bullets.setAll('anchor.x', 0.5)
+    this.bullets.setAll('anchor.y', 0.5)
 
     // GENERATORS
 
@@ -90,6 +101,21 @@ export default class extends Phaser.State {
     // console.log(this.player)
     // console.log('ASTEROID METHODS')
     // console.log(getObjectMethods(this.asteroid))
+  }
+
+  fireBullet () {
+    let bullet
+    if (this.game.time.now > this.bulletTime) {
+      bullet = this.bullets.getFirstExists(false)
+
+      if (bullet) {
+        bullet.reset(this.player.body.x + 24, this.player.body.y + 32)
+        bullet.lifespan = 2000
+        bullet.rotation = this.player.rotation
+        this.game.physics.arcade.velocityFromRotation(20, 1000, bullet.body.velocity)
+        this.bulletTime = this.game.time.now + 50
+      }
+    }
   }
 
   update () {
@@ -112,6 +138,10 @@ export default class extends Phaser.State {
 
     if (this.cursors.down.isDown) {
       this.player.y += 10
+    }
+
+    if (this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
+      this.fireBullet()
     }
   }
 

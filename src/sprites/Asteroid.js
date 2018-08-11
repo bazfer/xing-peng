@@ -15,13 +15,6 @@ export default class extends Phaser.Sprite {
     this.game.physics.enable(this)
   }
 
-  checkOverlap (a, b) {
-    let boundsA = a
-    let boundsB = b
-    
-    return Phaser.Rectangle.intersects(boundsA, boundsB)
-  }
-
   update () {
     this.body.x += this.vectorX
     this.body.y += this.vectorY

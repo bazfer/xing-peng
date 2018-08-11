@@ -7,6 +7,7 @@ export default class extends Phaser.Sprite {
     this.anchor.setTo(0.5)
     this.game = game
     this.health = 1000
+    
     // this.hitArea = Phaser.Rectangle
   }
 
@@ -20,6 +21,8 @@ export default class extends Phaser.Sprite {
     this.animations.add('flyFast', [2, 3])
     this.animations.play('flyFast', 15, true)
   }
+
+  
 
   update () {
     if (this.health < 0) {
