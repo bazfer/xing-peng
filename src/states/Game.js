@@ -112,7 +112,7 @@ export default class extends Phaser.State {
         bullet.reset(this.player.body.x + 24, this.player.body.y + 32)
         bullet.lifespan = 2000
         bullet.rotation = this.player.rotation
-        this.game.physics.arcade.velocityFromRotation(20, 1000, bullet.body.velocity)
+        this.game.physics.arcade.velocityFromRotation((3 * Math.PI) / 2, 600, bullet.body.velocity)
         this.bulletTime = this.game.time.now + 50
       }
     }

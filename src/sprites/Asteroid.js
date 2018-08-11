@@ -22,8 +22,8 @@ export default class extends Phaser.Sprite {
     let playerObject = getObject('player', this.game.world.children)
 
     if (playerObject && (checkOverlap(this, playerObject))) {
-      playerObject.damage(this.damagePower)
-      console.log(playerObject.health)
+      // playerObject.damage(this.damagePower)
+      // console.log(playerObject.health)
     }
 
     if ((this.x < -config.tileWidth) || (this.x > config.gameWidth + config.tileWidth) || (this.y > config.gameHeight + config.tileHeight)) {
