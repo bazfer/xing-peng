@@ -20,7 +20,7 @@ export default class extends Phaser.Group {
       y: -100,
       asset: this.asset
     })
-    this.game.add.existing(a)
+    this.add(a)
     a.init()
   }
 
@@ -30,6 +30,9 @@ export default class extends Phaser.Group {
       'normal': 500,
       'hard': 500
     }
+
+    this.enableBody = true
+    this.physicsBodyType = Phaser.Physics.ARCADE
 
     this.game.time.add(this.timer)
     this.timer.loop(getFrequency.normal, () => { this.generateAsteroid() })
