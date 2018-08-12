@@ -1,19 +1,21 @@
 /* globals __DEV__ */
 import Phaser from 'phaser'
-import lang from '../lang'
 import config from '../config'
+// import lang from '../lang'
 
 /* game assets */
 import Wall from '../sprites/Wall'
 import Background from '../sprites/Background'
 import Player from '../sprites/Player'
-import Asteroid from '../sprites/Asteroid'
 
 /* generators */
 import AsteroidGenerator from '../generators/AsteroidGenerator'
 
+/* weapons */
+import BulletGenerator from '../generators/BulletGenerator'
+
 /* utils */
-import { getObjectMethods } from '../utils'
+// import { getObjectMethods } from '../utils'
 
 export default class extends Phaser.State {
   init () { }
@@ -51,18 +53,7 @@ export default class extends Phaser.State {
     })
     this.game.add.existing(this.rightWall)
 
-    // SINGLE ENEMY
-    // this.asteroid = new Asteroid({
-    //   game: this.game,
-    //   x: 100,
-    //   y: -100,
-    //   asset: 'asteroid'
-    // })
-    // this.game.add.existing(this.asteroid)
-    // this.asteroid.init()
-
     // PLAYER
-    // ship
     this.player = new Player({
       game: this.game,
       x: this.world.centerX,
@@ -76,16 +67,6 @@ export default class extends Phaser.State {
     this.game.physics.enable(this.player, Phaser.Physics.ARCADE)
     this.player.body.collideWorldBounds = true
     this.player.init()
-    // bullet
-    this.bulletTime = 0
-
-    this.bullets = this.game.add.group()
-    this.bullets.enableBody = true
-    this.bullets.physicsBodyType = Phaser.Physics.ARCADE
-
-    this.bullets.createMultiple(40, 'bullet')
-    this.bullets.setAll('anchor.x', 0.5)
-    this.bullets.setAll('anchor.y', 0.5)
 
     // GENERATORS
 
@@ -95,27 +76,15 @@ export default class extends Phaser.State {
     this.asteroidGenerator2 = new AsteroidGenerator(self.game, this.player, 'asteroid', 'normal')
     this.asteroidGenerator2.init()
 
+    this.bulletGenerator = new BulletGenerator(self.game, this.player, 'bullet', 'normal')
+    this.bulletGenerator.init()
+
     // DEVELOPMENT
 
     // console.log('PLAYER')
     // console.log(this.player)
     // console.log('ASTEROID METHODS')
     // console.log(getObjectMethods(this.asteroid))
-  }
-
-  fireBullet () {
-    let bullet
-    if (this.game.time.now > this.bulletTime) {
-      bullet = this.bullets.getFirstExists(false)
-
-      if (bullet) {
-        bullet.reset(this.player.body.x + 24, this.player.body.y + 32)
-        bullet.lifespan = 2000
-        bullet.rotation = this.player.rotation
-        this.game.physics.arcade.velocityFromRotation((3 * Math.PI) / 2, 600, bullet.body.velocity)
-        this.bulletTime = this.game.time.now + 50
-      }
-    }
   }
 
   update () {
@@ -138,10 +107,6 @@ export default class extends Phaser.State {
 
     if (this.cursors.down.isDown) {
       this.player.y += 10
-    }
-
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
-      this.fireBullet()
     }
   }
 

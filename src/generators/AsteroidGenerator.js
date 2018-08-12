@@ -1,8 +1,8 @@
 import Phaser from 'phaser'
-import { getRandomInteger } from '../utils'
-import { config } from '../config'
 import Asteroid from '../sprites/Asteroid'
 
+import { getRandomInteger } from '../utils'
+// import { config } from '../config'
 export default class extends Phaser.Group {
   constructor (game, player, asset, difficulty) {
     super(game)
