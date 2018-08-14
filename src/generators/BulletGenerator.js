@@ -1,14 +1,15 @@
 import Phaser from 'phaser'
+import Bullet from '../sprites/Bullet'
+
 // import { getRandomInteger } from '../utils'
 // import { config } from '../config'
-// import Bullet from '../sprites/Bullet'
 
 export default class extends Phaser.Group {
   constructor (game, player, asset, difficulty) {
     super(game)
     this.player = player
-    this.asset = asset
-    this.difficulty = difficulty
+    // this.asset = asset
+    // this.difficulty = difficulty
     this.bulletTime = 0
   }
 
@@ -18,6 +19,7 @@ export default class extends Phaser.Group {
       bullet = this.getFirstExists(false)
 
       if (bullet) {
+        bullet.init()
         bullet.reset(this.player.body.x + 24, this.player.body.y + 32)
         bullet.lifespan = 2000
         bullet.rotation = this.player.rotation
@@ -30,7 +32,8 @@ export default class extends Phaser.Group {
   init () {
     this.enableBody = true
     this.physicsBodyType = Phaser.Physics.ARCADE
-    this.createMultiple(40, 'bullet')
+    this.classType = Bullet
+    this.createMultiple(40)
     this.setAll('anchor.x', 0.5)
     this.setAll('anchor.y', 0.5)
   }

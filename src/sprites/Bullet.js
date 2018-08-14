@@ -1,10 +1,7 @@
 import Phaser from 'phaser'
-import { checkOverlap } from '../utils'
-import config from '../config'
-
 export default class extends Phaser.Sprite {
-  constructor ({ game, x, y, asset }) {
-    super(game, x, y, asset)
+  constructor (game, x, y, key, frame) {
+    super(game, x, y, 'bullet', frame)
   }
 
   init () {
